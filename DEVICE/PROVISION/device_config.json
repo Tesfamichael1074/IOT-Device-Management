@@ -1,0 +1,20 @@
+{ "DEVICE_DATA":{
+    "DEVICE_ID": "d3ad2b3c-2312-40f4-84d7-bf0af42650bf",
+    "DEVICE_TYPE": "RPI",
+    "CONNECTIVITY_TYPE": "WIFI",
+    "CONNECTION_TYPE": "MQTT",
+    "ORG_ID":"110899c6-8191-11ea-bc55-0242ac130003",
+    "DEVICE_FOOTPRINT":"110899c7-8191-11ea-bc55-0242ac130003"
+},
+    "MQTT_PARAM":{
+        "MQTT_URL":"192.168.43.39",
+        "MQTT_PORT":"1883",
+        "MQTT_USR" :"",
+        "MQTT_PASS" :"",
+        "MQTT_QOS" :"0"
+    },
+    "DEVICE_AUTH":{
+    "DEVICE_USR": "sachinrana2k11",
+    "DEVICE_PWD": "admin12345"
+}
+}

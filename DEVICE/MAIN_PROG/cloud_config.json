@@ -1,0 +1,12 @@
+{
+    "MQTT_PARAM": {
+        "CONFIGURE_TIMES": 3,
+        "MQTT_PASS": "qwerty",
+        "MQTT_PORT": "1883",
+        "MQTT_PUB_TOPIC": "sachin",
+        "MQTT_QOS": "0",
+        "MQTT_SUB_TOPIC": "suhsil",
+        "MQTT_URL": "www.ideaxa.com",
+        "MQTT_USR": "sachinrana2k11"
+    }
+}

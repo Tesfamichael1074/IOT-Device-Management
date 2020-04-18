@@ -1,0 +1,13 @@
+{
+  "DEVICE_AUTH": {
+    "DEVICE_USR": "admin",
+    "DEVICE_PWD": "admin"
+  },
+  "MQTT_PARAM": {
+    "MQTT_URL": "192.168.43.39",
+    "MQTT_PORT": "1883",
+    "MQTT_USR": "",
+    "MQTT_PASS": "",
+    "MQTT_QOS": "0"
+  }
+}
