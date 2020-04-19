@@ -10,18 +10,18 @@ class Device:
         self.Connected = True
 
 
-    def on_connect(client, userdata, flags, rc):
+    def on_connect(self, client, userdata, flags, rc):
         if rc == 0:
-            if debug:
+            if self.debug:
                 print("Connected to broker")
 
                # Signal connection
             client.subscribe(data["DEVICE_DATA"]["DEVICE_FOOTPRINT"])
         else:
-            if debug:
+            if self.debug:
                 print("Connection failed")
 
-    def on_message(client, userdata, msg):
+    def on_message(self, client, userdata, msg):
         in_data = json.loads((msg.payload).decode("utf-8"))
         if in_data["DEVICE_AUTH"]["DEVICE_USR"]== data["DEVICE_AUTH"]["DEVICE_USR"] and in_data["DEVICE_AUTH"]["DEVICE_PWD"]== data["DEVICE_AUTH"]["DEVICE_PWD"]:
             print("AUTH DONE")
@@ -69,7 +69,7 @@ if __name__ == "__main__":
     device.Connected = False  # global variable for the state of the connection
     with open('device_config.json') as json_file:
         data = json.load(json_file)
-        if debug:
+        if device.debug:
             print(colored("SUCCESFULLY LOADED CONFIGURATION FROM FILE", "green"))
     MQTT_client = mqtt.Client(data["DEVICE_DATA"]["DEVICE_ID"])
     MQTT_client.username_pw_set(data["MQTT_PARAM"]["MQTT_USR"], data["MQTT_PARAM"]["MQTT_PASS"])
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     MQTT_client.on_message = device.on_message  # attach function to callback
     MQTT_client.connect(data["MQTT_PARAM"]["MQTT_URL"], int(data["MQTT_PARAM"]["MQTT_PORT"]))
     print("CONNECTED")
-    if debug:
+    if device.debug:
         print(colored("SUCCESFULLY CONNECTED TO MQTT BROKER", "green"))
     MQTT_client.loop_start()
     while device.Connected != True:  # Wait for connection
@@ -87,11 +87,11 @@ if __name__ == "__main__":
             payload = data["DEVICE_DATA"]
             MQTT_client.publish(topic=data["DEVICE_DATA"]["ORG_ID"], payload=json.dumps(payload), qos=int(data["MQTT_PARAM"]["MQTT_QOS"]))
             print("PINGING...")
-            if debug:
+            if device.debug:
                 print(colored("PUBLISHING  DATA TO MQTT-:" + str(payload), "green"))
             time.sleep(5)
     except KeyboardInterrupt:
-        if debug:
+        if device.debug:
             print("exiting")
         MQTT_client.disconnect()
         MQTT_client.loop_stop()
